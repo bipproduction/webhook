@@ -3,9 +3,12 @@ const { Webhooks } = require('@octokit/webhooks');
 const cors = require('cors')
 const app = express();
 const port = 5008;
+const TYPE_PAYLOAD = require('./payload.json');
+const str = require('./src/str');
+require('dotenv').config()
 
 const webhooks = new Webhooks({
-    secret: 'ghjkhgfcdtfyguhkjhgfderdtfyguhjgfcdtrfyguhjgfrtfyguhigfrftyguhbjgvftyguhjgvfcftgyhjgvfcftyguhgfcftgyuhgfctyghbgvfcgyhgfghbgvfhggfchgghvgfghvghjgfchjhbgfgcchgjhjbgvfgchgjhbfcghjhbgvfghgjhgvfchgjhgfcghjgvfhjgvfchgvfgyhgvhyhgvfhgvhyghbbvgfhfghgvfvhghyhfgchgfchggcfgyhgcfguyhfgbhghvgvgfvhh',
+    secret: process.env.SCRT
 });
 
 app.use(cors())
@@ -34,10 +37,31 @@ app.post('/str', (req, res) => {
 });
 
 
+const listAction = [
+    {
+        name: "str",
+        branch: "build",
+        action: str
+    }
+]
+
 
 webhooks.onAny(({ id, name, payload }) => {
-    console.log(`Received event ${name} for action ${JSON.stringify(payload)}`);
-    // Tambahkan logika Anda di sini untuk menangani perubahan
+    if (name === "push") {
+        /**
+         * @type {TYPE_PAYLOAD}
+         */
+        const pyl = payload
+        if (!pyl) return console.log("no repository")
+        const namaBranch = pyl.ref.split('/').pop()
+        const repositoryName = pyl.repository.full_name.split("/").pop()
+        if (!namaBranch) return console.log("no branch")
+        if (namaBranch != "build") return console.log("not build")
+        const ada = listAction.find((v) => v.name === repositoryName)
+        if (!ada) return console.log("no branch ref")
+        ada.action()
+    }
+    // console.log(`Received event ${name} for action ${JSON.stringify(payload.ref)}`);
 });
 
 app.listen(port, () => {
