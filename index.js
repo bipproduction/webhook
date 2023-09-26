@@ -10,6 +10,12 @@ const webhooks = new Webhooks({
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.json({
+        message: 'Hello World!'
+    })
+})
+
 app.post('/str', (req, res) => {
     webhooks.verifyAndReceive({
         id: req.headers['x-github-delivery'],
@@ -19,6 +25,8 @@ app.post('/str', (req, res) => {
     });
     res.status(200).end();
 });
+
+
 
 webhooks.onAny(({ id, name, payload }) => {
     console.log(`Received event ${name} for action ${payload.action}`);
