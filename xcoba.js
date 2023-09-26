@@ -1,3 +1,4 @@
 const branch = "refs/heads/main"
+require('dotenv').config()
 
-console.log(branch.split('/').pop())
+console.log(process.env.SCRT)

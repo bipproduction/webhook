@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const { Webhooks } = require('@octokit/webhooks');
 const cors = require('cors')
@@ -5,7 +6,7 @@ const app = express();
 const port = 5008;
 const TYPE_PAYLOAD = require('./payload.json');
 const str = require('./src/str');
-require('dotenv').config()
+
 
 const webhooks = new Webhooks({
     secret: process.env.SCRT
