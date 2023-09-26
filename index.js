@@ -39,8 +39,10 @@ app.post('/str', (req, res) => {
 
 const listAction = [
     {
+        id: "str_5001",
         name: "str",
         branch: "build",
+        port: "5001",
         action: str
     }
 ]
@@ -58,7 +60,7 @@ webhooks.onAny(({ id, name, payload }) => {
         if (namaBranch != "build") return console.log("not build")
         const ada = listAction.find((v) => v.name === repositoryName)
         if (!ada) return console.log("no branch ref")
-        ada.action()
+        ada.action(ada)
     }
 
 });
