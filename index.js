@@ -32,6 +32,7 @@ app.post('/str', (req, res) => {
         console.log("error disini")
     }
 
+    console.log("update str")
     res.status(200).end();
 });
 
