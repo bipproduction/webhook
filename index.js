@@ -1,6 +1,6 @@
 const express = require('express');
 const { Webhooks } = require('@octokit/webhooks');
-
+const cors = require('cors')
 const app = express();
 const port = 5008;
 
@@ -8,10 +8,11 @@ const webhooks = new Webhooks({
     secret: 'ghjkhgfcdtfyguhkjhgfderdtfyguhjgfcdtrfyguhjgfrtfyguhigfrftyguhbjgvftyguhjgvfcftgyhjgvfcftyguhgfcftgyuhgfctyghbgvfcgyhgfghbgvfhggfchgghvgfghvghjgfchjhbgfgcchgjhjbgvfgchgjhbfcghjhbgvfghgjhgvfchgjhgfcghjgvfhjgvfchgvfgyhgvhyhgvfhgvhyghbbvgfhfghgvfvhghyhfgchgfchggcfgyhgcfguyhfgbhghvgvgfvhh',
 });
 
+app.use(cors())
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.json({
+    res.status(200).json({
         message: 'Hello World!'
     })
 })
