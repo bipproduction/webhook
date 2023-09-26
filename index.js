@@ -49,6 +49,7 @@ async function action(data) {
     git pull origin build
     yarn install
     npx prisma db push
+    npx prisma generate
     pm2 restart ${data.id}
     `
     execSync(cmd, { stdio: "inherit" })
@@ -60,6 +61,13 @@ const listAction = [
         name: "str",
         branch: "build",
         port: "5001",
+        action: action
+    },
+    {
+        id: "arm_5004",
+        name: "arm",
+        branch: "build",
+        port: "5004",
         action: action
     }
 ]
