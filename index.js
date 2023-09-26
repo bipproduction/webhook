@@ -8,6 +8,7 @@ const TYPE_PAYLOAD = require('./payload.json');
 const str = require('./src/str');
 const TYPE_CHOOSE = require('./type/CHOOSE');
 const { execSync } = require('child_process')
+const { fetch } = require('cross-fetch')
 
 const webhooks = new Webhooks({
     secret: process.env.SCRT.toString()
@@ -21,22 +22,6 @@ app.get('/', (req, res) => {
         message: 'Hello World!'
     })
 })
-
-// app.post('/:name', (req, res) => {
-//     try {
-//         webhooks.verifyAndReceive({
-//             id: req.headers['x-github-delivery'],
-//             name: req.headers['x-github-event'],
-//             payload: JSON.stringify(req.body),
-//             signature: req.headers['x-hub-signature'],
-//         });
-//     } catch (error) {
-//         console.log("error disini")
-//     }
-
-//     console.log("update data")
-//     res.status(200).end();
-// });
 
 app.post('/', (req, res) => {
     try {
@@ -70,6 +55,7 @@ async function action(data) {
     pm2 restart ${data.id}
     `
     execSync(cmd, { stdio: "inherit" })
+    fetch(`https:/wa.wibudev.com/code?nom=6289697338821&text=${data.name} build success`)
 }
 
 const listAction = [
