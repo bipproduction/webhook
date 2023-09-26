@@ -22,7 +22,23 @@ app.get('/', (req, res) => {
     })
 })
 
-app.post('/:name', (req, res) => {
+// app.post('/:name', (req, res) => {
+//     try {
+//         webhooks.verifyAndReceive({
+//             id: req.headers['x-github-delivery'],
+//             name: req.headers['x-github-event'],
+//             payload: JSON.stringify(req.body),
+//             signature: req.headers['x-hub-signature'],
+//         });
+//     } catch (error) {
+//         console.log("error disini")
+//     }
+
+//     console.log("update data")
+//     res.status(200).end();
+// });
+
+app.post('/', (req, res) => {
     try {
         webhooks.verifyAndReceive({
             id: req.headers['x-github-delivery'],
@@ -36,7 +52,7 @@ app.post('/:name', (req, res) => {
 
     console.log("update data")
     res.status(200).end();
-});
+})
 
 
 /**
