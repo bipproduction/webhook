@@ -12,7 +12,6 @@ module.exports = async function (data) {
     yarn install
     npx prisma db push
     pm2 restart ${data.id}
-
     `
     execSync(cmd, { stdio: "inherit" })
 }

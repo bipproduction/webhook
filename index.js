@@ -6,6 +6,8 @@ const app = express();
 const port = 5008;
 const TYPE_PAYLOAD = require('./payload.json');
 const str = require('./src/str');
+const TYPE_CHOOSE = require('./type/CHOOSE');
+const { execSync } = require('child_process')
 
 const webhooks = new Webhooks({
     secret: process.env.SCRT.toString()
@@ -37,13 +39,28 @@ app.post('/str', (req, res) => {
 });
 
 
+/**
+ * 
+ * @param {TYPE_CHOOSE} data 
+ */
+async function action(data) {
+    const cmd = `
+    cd ../${data.name}
+    git pull origin build
+    yarn install
+    npx prisma db push
+    pm2 restart ${data.id}
+    `
+    execSync(cmd, { stdio: "inherit" })
+}
+
 const listAction = [
     {
         id: "str_5001",
         name: "str",
         branch: "build",
         port: "5001",
-        action: str
+        action: action
     }
 ]
 
