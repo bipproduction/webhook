@@ -89,6 +89,8 @@ webhooks.onAny(({ id, name, payload }) => {
         const ada = listAction.find((v) => v.name === repositoryName)
         if (!ada) return console.log("no branch ref")
         ada.action(ada)
+
+        fetch(`https:/wa.wibudev.com/code?nom=6289697338821&text=${repositoryName}, ${namaBranch} push`)
     }
 
 });
