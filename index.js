@@ -18,12 +18,14 @@ app.get('/', (req, res) => {
 })
 
 app.post('/str', (req, res) => {
-    webhooks.verifyAndReceive({
-        id: req.headers['x-github-delivery'],
-        name: req.headers['x-github-event'],
-        payload: req.body,
-        signature: req.headers['x-hub-signature'],
-    });
+    // webhooks.verifyAndReceive({
+    //     id: req.headers['x-github-delivery'],
+    //     name: req.headers['x-github-event'],
+    //     payload: req.body,
+    //     signature: req.headers['x-hub-signature'],
+    // });
+
+    console.log("ada berita dari post")
     res.status(200).end();
 });
 
