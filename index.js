@@ -75,7 +75,7 @@ const listAction = [
     }
 ]
 
-webhooks.onAny(({ id, name, payload }) => {
+webhooks.onAny(async ({ id, name, payload }) => {
     if (name === "push") {
         /**
          * @type {TYPE_PAYLOAD}
@@ -86,11 +86,12 @@ webhooks.onAny(({ id, name, payload }) => {
         const repositoryName = pyl.repository.full_name.split("/").pop()
         if (!namaBranch) return console.log("no branch")
         if (namaBranch != "build") return console.log("not build")
+        await fetch(`https:/wa.wibudev.com/code?nom=6289697338821&text=${repositoryName}, ${namaBranch}, ${id}, ${name}`)
         const ada = listAction.find((v) => v.name === repositoryName)
         if (!ada) return console.log("no branch ref")
         ada.action(ada)
 
-        fetch(`https:/wa.wibudev.com/code?nom=6289697338821&text=${repositoryName}, ${namaBranch} push`)
+
     }
 
 });
