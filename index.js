@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
     })
 })
 
-app.post('/str', (req, res) => {
+app.post('/:name', (req, res) => {
     try {
         webhooks.verifyAndReceive({
             id: req.headers['x-github-delivery'],
@@ -34,7 +34,7 @@ app.post('/str', (req, res) => {
         console.log("error disini")
     }
 
-    console.log("update str")
+    console.log("update data")
     res.status(200).end();
 });
 
