@@ -7,9 +7,8 @@ const port = 5008;
 const TYPE_PAYLOAD = require('./payload.json');
 const str = require('./src/str');
 
-
 const webhooks = new Webhooks({
-    secret: process.env.SCRT
+    secret: process.env.SCRT.toString()
 });
 
 app.use(cors())
@@ -33,7 +32,6 @@ app.post('/str', (req, res) => {
         console.log("error disini")
     }
 
-    console.log("ada berita dari post")
     res.status(200).end();
 });
 
@@ -45,7 +43,6 @@ const listAction = [
         action: str
     }
 ]
-
 
 webhooks.onAny(({ id, name, payload }) => {
     if (name === "push") {
@@ -62,7 +59,7 @@ webhooks.onAny(({ id, name, payload }) => {
         if (!ada) return console.log("no branch ref")
         ada.action()
     }
-    // console.log(`Received event ${name} for action ${JSON.stringify(payload.ref)}`);
+
 });
 
 app.listen(port, () => {

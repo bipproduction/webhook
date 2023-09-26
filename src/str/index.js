@@ -1,3 +1,4 @@
+const { execSync } = require('child_process')
 module.exports = async function () {
-    console.log('ini adakah strl log')
+    execSync('cd ../str', { stdio: "inherit" })
 }
