@@ -36,7 +36,7 @@ app.post('/str', (req, res) => {
 
 
 webhooks.onAny(({ id, name, payload }) => {
-    console.log(`Received event ${name} for action ${payload}`);
+    console.log(`Received event ${name} for action ${JSON.stringify(payload)}`);
     // Tambahkan logika Anda di sini untuk menangani perubahan
 });
 
