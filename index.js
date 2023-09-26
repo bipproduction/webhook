@@ -66,6 +66,7 @@ async function action(data) {
     yarn install
     npx prisma db push
     npx prisma generate
+    yarn build
     pm2 restart ${data.id}
     `
     execSync(cmd, { stdio: "inherit" })
