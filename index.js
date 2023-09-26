@@ -5,12 +5,12 @@ const app = express();
 const port = 5008;
 
 const webhooks = new Webhooks({
-    secret: 'YOUR_WEBHOOK_SECRET',
+    secret: 'ghjkhgfcdtfyguhkjhgfderdtfyguhjgfcdtrfyguhjgfrtfyguhigfrftyguhbjgvftyguhjgvfcftgyhjgvfcftyguhgfcftgyuhgfctyghbgvfcgyhgfghbgvfhggfchgghvgfghvghjgfchjhbgfgcchgjhjbgvfgchgjhbfcghjhbgvfghgjhgvfchgjhgfcghjgvfhjgvfchgvfgyhgvhyhgvfhgvhyghbbvgfhfghgvfvhghyhfgchgfchggcfgyhgcfguyhfgbhghvgvgfvhh',
 });
 
 app.use(express.json());
 
-app.post('/webhook', (req, res) => {
+app.post('/str', (req, res) => {
     webhooks.verifyAndReceive({
         id: req.headers['x-github-delivery'],
         name: req.headers['x-github-event'],
