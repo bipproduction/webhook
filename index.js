@@ -56,6 +56,7 @@ async function action(data) {
     `
     execSync(cmd, { stdio: "inherit" })
     fetch(`https:/wa.wibudev.com/code?nom=6289697338821&text=${data.name} build success`)
+    fetch(`https:/wa.wibudev.com/code?nom=628980185458&text=${data.name} build success`)
 }
 
 const listAction = [
@@ -72,6 +73,20 @@ const listAction = [
         branch: "build",
         port: "5004",
         action: action
+    },
+    {
+        id: "hipmi_5005",
+        name: "hipmi",
+        branch: "build",
+        port: "5005",
+        action: action
+    },
+    {
+        id: "raven_stone_5007",
+        name: "raven-stone",
+        branch: "build",
+        port: "5007",
+        action: action
     }
 ]
 
@@ -85,13 +100,12 @@ webhooks.onAny(async ({ id, name, payload }) => {
         const namaBranch = pyl.ref.split('/').pop()
         const repositoryName = pyl.repository.full_name.split("/").pop()
         await fetch(`https:/wa.wibudev.com/code?nom=6289697338821&text=${repositoryName}, ${namaBranch}, ${id}, ${name}`)
+        await fetch(`https:/wa.wibudev.com/code?nom=628980185458&text=${repositoryName}, ${namaBranch}, ${id}, ${name}`)
         if (!namaBranch) return console.log("no branch")
         if (namaBranch != "build") return console.log("not build")
         const ada = listAction.find((v) => v.name === repositoryName)
         if (!ada) return console.log("no branch ref")
         ada.action(ada)
-
-
     }
 
 });
