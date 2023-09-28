@@ -5,10 +5,8 @@ const cors = require('cors')
 const app = express();
 const port = 5008;
 const TYPE_PAYLOAD = require('./payload.json');
-const str = require('./src/str');
-const TYPE_CHOOSE = require('./type/CHOOSE');
-const { execSync } = require('child_process')
-const { fetch } = require('cross-fetch')
+const { fetch } = require('cross-fetch');
+const listAction = require('./list_action');
 
 const webhooks = new Webhooks({
     secret: process.env.SCRT.toString()
@@ -38,57 +36,6 @@ app.post('/', (req, res) => {
     console.log("update data")
     res.status(200).end();
 })
-
-
-/**
- * 
- * @param {TYPE_CHOOSE} data 
- */
-async function action(data) {
-    const cmd = `
-    cd ../${data.name}
-    git pull origin build
-    yarn install
-    npx prisma db push
-    npx prisma generate
-    yarn build
-    pm2 restart ${data.id}
-    `
-    execSync(cmd, { stdio: "inherit" })
-    fetch(`https:/wa.wibudev.com/code?nom=6289697338821&text=${data.name} build success`)
-    fetch(`https:/wa.wibudev.com/code?nom=628980185458&text=${data.name} build success`)
-}
-
-const listAction = [
-    {
-        id: "str_5001",
-        name: "str",
-        branch: "build",
-        port: "5001",
-        action: action
-    },
-    {
-        id: "arm_5004",
-        name: "arm",
-        branch: "build",
-        port: "5004",
-        action: action
-    },
-    {
-        id: "hipmi_5005",
-        name: "hipmi",
-        branch: "build",
-        port: "5005",
-        action: action
-    },
-    {
-        id: "raven_stone_5007",
-        name: "raven-stone",
-        branch: "build",
-        port: "5007",
-        action: action
-    }
-]
 
 webhooks.onAny(async ({ id, name, payload }) => {
     if (name === "push") {

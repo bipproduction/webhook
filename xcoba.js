@@ -1,4 +1,5 @@
-const branch = "refs/heads/main"
-require('dotenv').config()
+const yaml = require('yaml')
+const fs = require('fs')
 
-console.log(process.env.SCRT)
+const data  = fs.readFileSync('./list_server.yaml').toString()
+console.log(yaml.parse(data))
