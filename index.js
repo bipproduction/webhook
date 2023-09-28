@@ -61,31 +61,10 @@ async function action(data) {
 
 const listAction = [
     {
-        id: "str_5001",
-        name: "str",
+        id: "explore_3001",
+        name: "explore",
         branch: "build",
-        port: "5001",
-        action: action
-    },
-    {
-        id: "arm_5004",
-        name: "arm",
-        branch: "build",
-        port: "5004",
-        action: action
-    },
-    {
-        id: "hipmi_5005",
-        name: "hipmi",
-        branch: "build",
-        port: "5005",
-        action: action
-    },
-    {
-        id: "raven_stone_5007",
-        name: "raven-stone",
-        branch: "build",
-        port: "5007",
+        port: "3001",
         action: action
     }
 ]
