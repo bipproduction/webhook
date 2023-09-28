@@ -61,10 +61,10 @@ async function action(data) {
 
 const listAction = [
     {
-        id: "explore_3001",
+        id: "explore_3000",
         name: "explore-tropica",
         branch: "build",
-        port: "3001",
+        port: "3000",
         action: action
     }
 ]
