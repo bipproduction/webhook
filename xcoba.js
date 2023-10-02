@@ -5,6 +5,6 @@ const config = yaml.parse(configFile)
 const fs = require('fs')
 const configVal = yaml.parse(fs.readFileSync('./config.yaml').toString())
 const { list_server: listServer } = yaml.parse(fs.readFileSync('./config.yaml').toString())
-// console.log(JSON.stringify(configVal, null, 2))
+console.log(JSON.stringify(configVal, null, 2))
 
-fs.appendFileSync('./app.log', "halo apa kabarnya \n")
+// fs.appendFileSync('./app.log', "halo apa kabarnya \n")

@@ -1,14 +1,22 @@
 require('dotenv').config()
+const fs = require('fs')
+const CONFIG = require('./type/CONFIG');
+
+/**
+ * @type {CONFIG}
+ */
+const config = require('yaml').parse(fs.readFileSync('./config.yaml').toString())
 const express = require('express');
 const { Webhooks } = require('@octokit/webhooks');
 const cors = require('cors')
 const app = express();
-const port = process.env.MY_PORT;
+const port = config.server.port;
 const TYPE_PAYLOAD = require('./payload.json');
 // const { fetch } = require('cross-fetch');
 const listAction = require('./src/app_modules/list_action');
 const log_wa = require('./src/app_modules/log_wa');
-const fs = require('fs')
+
+
 
 const webhooks = new Webhooks({
     secret: process.env.SCRT.toString()
