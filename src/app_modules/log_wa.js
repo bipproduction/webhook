@@ -23,6 +23,10 @@ module.exports = async function (repositoryName, text) {
         ---------------------------------
         \n
         `
+        if (!fs.existsSync('../../app.log')) {
+            fs.writeFileSync('../../app.log', "", 'utf-8')
+        }
         fs.appendFileSync('../../app.log', dataLog)
+        console.log("note log")
     }
 }
