@@ -5,8 +5,10 @@ const cors = require('cors')
 const app = express();
 const port = process.env.MY_PORT;
 const TYPE_PAYLOAD = require('./payload.json');
-const { fetch } = require('cross-fetch');
-const listAction = require('./list_action');
+// const { fetch } = require('cross-fetch');
+const listAction = require('./src/app_modules/list_action');
+const log_wa = require('./src/app_modules/log_wa');
+const fs = require('fs')
 
 const webhooks = new Webhooks({
     secret: process.env.SCRT.toString()
@@ -16,9 +18,8 @@ app.use(cors())
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.status(200).json({
-        message: 'Hello World!'
-    })
+    const dataLog = fs.readFileSync('./app.log').toString()
+    res.status(200).send(decodeURIComponent(dataLog))
 })
 
 app.post('/', (req, res) => {
@@ -44,15 +45,34 @@ webhooks.onAny(async ({ id, name, payload }) => {
          */
         const pyl = payload
         if (!pyl) return console.log("no repository")
-        const namaBranch = pyl.ref.split('/').pop()
+        const branchName = pyl.ref.split('/').pop()
         const repositoryName = pyl.repository.full_name.split("/").pop()
-        await fetch(`https:/wa.wibudev.com/code?nom=6289697338821&text=${repositoryName}, ${namaBranch}, ${id}, ${name}`)
-        await fetch(`https:/wa.wibudev.com/code?nom=628980185458&text=${repositoryName}, ${namaBranch}, ${id}, ${name}`)
-        if (!namaBranch) return console.log("no branch")
-        if (namaBranch != "build") return console.log("not build")
+
+        // digantikan dengan function
+        // await fetch(`https:/wa.wibudev.com/code?nom=6289697338821&text=${repositoryName}, ${namaBranch}, ${id}, ${name}`)
+        // await fetch(`https:/wa.wibudev.com/code?nom=628980185458&text=${repositoryName}, ${namaBranch}, ${id}, ${name}`)
+
+        let log_data = `
+        repository: ${repositoryName}
+        branch: ${branchName}
+        pusher: ${pyl.pusher.name}
+        message: push success
+        `
+
+        await log_wa(encodeURIComponent(log_data))
+
+        if (!branchName) return console.log("no branch")
+        if (branchName != "build") return console.log("not build")
         const ada = listAction.find((v) => v.name === repositoryName)
         if (!ada) return console.log("no branch ref")
-        ada.action(ada)
+        await ada.action(ada)
+        log_data = `
+        repository: ${repositoryName}
+        branch: ${branchName}
+        pusher: ${pyl.pusher.name}
+        message: build success
+        `
+        await log_wa(encodeURIComponent(log_data))
     }
 
 });
