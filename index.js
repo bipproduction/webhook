@@ -17,7 +17,6 @@ const listAction = require('./src/app_modules/list_action');
 const log_wa = require('./src/app_modules/log_wa');
 
 
-
 const webhooks = new Webhooks({
     secret: process.env.SCRT.toString()
 });
@@ -67,7 +66,7 @@ webhooks.onAny(async ({ id, name, payload }) => {
         message: push success
         `
 
-        await log_wa(encodeURIComponent(log_data))
+        await log_wa(repositoryName, encodeURIComponent(log_data))
 
         if (!branchName) return console.log("no branch")
         if (branchName != "build") return console.log("not build")
@@ -80,7 +79,7 @@ webhooks.onAny(async ({ id, name, payload }) => {
         pusher: ${pyl.pusher.name}
         message: build success
         `
-        await log_wa(encodeURIComponent(log_data))
+        await log_wa(repositoryName, encodeURIComponent(log_data))
     }
 
 });
