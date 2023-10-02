@@ -27,6 +27,6 @@ module.exports = async function (repositoryName, text) {
             fs.writeFileSync('../../app.log', "", 'utf-8')
         }
         fs.appendFileSync('../../app.log', dataLog)
-        console.log("note log")
+        console.log(`note log ${dataLog}`)
     }
 }
