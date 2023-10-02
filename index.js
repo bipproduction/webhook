@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
         fs.writeFileSync('app.log', '', 'utf-8')
     }
     const dataLog = fs.readFileSync('./app.log').toString()
-    res.status(200).send(`<pre?>
+    res.status(200).send(`<pre>
         <code>
             ${decodeURIComponent(dataLog)}
         </code>
