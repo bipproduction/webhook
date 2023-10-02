@@ -4,6 +4,7 @@ const yaml = require('yaml')
 const CONFIG = require('../../type/CONFIG')
 const fs = require('fs')
 const _ = require('lodash')
+const moment = require('moment')
 
 /**
  * @type {CONFIG}
@@ -18,9 +19,8 @@ module.exports = async function (repositoryName, text) {
         }
 
         const dataLog = `
-        date: ${new Date().toISOString()}
+        date: ${moment().format("DD-MM-YY HH:mm")}
         log: ${text}
-        ---------------------------------
         \n
         `
         if (!fs.existsSync(path.join(__dirname, '../../app.log'))) {

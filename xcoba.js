@@ -6,6 +6,7 @@ const fs = require('fs')
 const configVal = yaml.parse(fs.readFileSync('./config.yaml').toString())
 const { list_server: listServer } = yaml.parse(fs.readFileSync('./config.yaml').toString())
 // console.log(JSON.stringify(configVal, null, 2))
+const moment = require('moment')
 
 const d = `
 halo
@@ -13,5 +14,5 @@ apa ka
 bar
 %0Ahalo%0Aapa%20ka%0Abar%0A
 `
-console.log(decodeURIComponent(d))
+console.log(moment().format("DD-MM-YY HH:mm"))
 // fs.appendFileSync('./app.log', "halo apa kabarnya \n")
