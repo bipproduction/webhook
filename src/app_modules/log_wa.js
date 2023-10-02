@@ -17,17 +17,17 @@ module.exports = async function (repositoryName, text) {
             await fetch(`https:/wa.wibudev.com/code?nom=${lw.number}&text=${text}`)
             console.log(`send wa to ${lw.name} , ${text}`)
         }
-
-        const dataLog = `
-        date: ${moment().format("DD-MM-YY HH:mm")}
-        log: ${text}
-        \n
-        `
-        if (!fs.existsSync(path.join(__dirname, '../../app.log'))) {
-            fs.writeFileSync(path.join(__dirname, '../../app.log'), "", 'utf-8')
-        }
-
-        fs.appendFileSync(path.join(__dirname, '../../app.log'), dataLog)
-        console.log(`note log ${dataLog}`)
     }
+
+    const dataLog = `
+            date: ${moment().format("DD-MM-YY HH:mm")}
+            log: ${text}
+            \n
+            `
+    if (!fs.existsSync(path.join(__dirname, '../../app.log'))) {
+        fs.writeFileSync(path.join(__dirname, '../../app.log'), "", 'utf-8')
+    }
+
+    fs.appendFileSync(path.join(__dirname, '../../app.log'), dataLog)
+    console.log(`note log ${dataLog}`)
 }
