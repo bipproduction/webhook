@@ -25,6 +25,9 @@ app.use(cors())
 app.use(express.json());
 
 app.get('/', (req, res) => {
+    if (!fs.existsSync('app.log')) {
+        fs.writeFileSync('app.log', '', 'utf-8')
+    }
     const dataLog = fs.readFileSync('./app.log').toString()
     res.status(200).send(decodeURIComponent(dataLog))
 })
