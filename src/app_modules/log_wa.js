@@ -1,6 +1,7 @@
-const configFile = require('fs').readFileSync('./../../config.yaml').toString()
+const path = require('path')
+const configFile = require('fs').readFileSync(path.join(__dirname, './../../config.yaml')).toString()
 const yaml = require('yaml')
-const CONFIG = require('../../type/CONFIG')
+const CONFIG = require(path.join(__dirname, '../../type/CONFIG'))
 const fs = require('fs')
 
 /**

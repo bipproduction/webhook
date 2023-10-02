@@ -1,13 +1,14 @@
-require('dotenv').config()
+const path = require('path')
+require('dotenv').config(path.join(__dirname, './payload.json'))
 const express = require('express');
 const { Webhooks } = require('@octokit/webhooks');
 const cors = require('cors')
 const app = express();
 const port = process.env.MY_PORT;
-const TYPE_PAYLOAD = require('./payload.json');
+const TYPE_PAYLOAD = require();
 // const { fetch } = require('cross-fetch');
-const listAction = require('./src/app_modules/list_action');
-const log_wa = require('./src/app_modules/log_wa');
+const listAction = require(path.join(__dirname, './src/app_modules/list_action'));
+const log_wa = require(path.join(__dirname, './src/app_modules/log_wa'));
 const fs = require('fs')
 
 const webhooks = new Webhooks({
@@ -18,7 +19,7 @@ app.use(cors())
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    const dataLog = fs.readFileSync('./app.log').toString()
+    const dataLog = fs.readFileSync(path.join(__dirname, './app.log')).toString()
     res.status(200).send(decodeURIComponent(dataLog))
 })
 

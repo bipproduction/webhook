@@ -1,11 +1,12 @@
-const TYPE_CHOOSE = require('../../type/CHOOSE');
+const path = require('path')
+const TYPE_CHOOSE = require(path.join(__dirname, '../../type/CHOOSE'));
 const { execSync } = require('child_process')
 // const listServer = require('./list_server.json')
 const fs = require('fs')
 const yaml = require('yaml');
 // const log_wa = require('./log_wa');
-const CONFIG = require('../../type/CONFIG');
-const path = require('path')
+const CONFIG = require(path.join(__dirname, '../../type/CONFIG'));
+
 /**
  * @type {CONFIG}
  */
