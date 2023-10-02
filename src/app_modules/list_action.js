@@ -5,11 +5,11 @@ const fs = require('fs')
 const yaml = require('yaml');
 // const log_wa = require('./log_wa');
 const CONFIG = require('../../type/CONFIG');
-
+const path = require('path')
 /**
  * @type {CONFIG}
  */
-const config = yaml.parse(fs.readFileSync('./../../config.yaml').toString())
+const config = yaml.parse(fs.readFileSync(path.join(__dirname, './../../config.yaml')).toString())
 const listServer = config.list_server
 
 /**
