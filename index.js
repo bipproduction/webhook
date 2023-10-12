@@ -88,5 +88,5 @@ webhooks.onAny(async ({ id, name, payload }) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server berjalan di http://localhost:${port}`);
+    console.log(`Server berjalan di http://localhost:${port} | version: 1.1.0`);
 });
