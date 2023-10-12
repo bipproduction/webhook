@@ -10,6 +10,7 @@ list_wa:
     list_server:
       - arm
       - hipmi
+      - ninox-fox
   - name: bagas
     number: 6282340374412
     list_server:
@@ -39,3 +40,7 @@ list_server:
     name: explore-tropica
     branch: build
     port: 3000
+  - id: ninox-fox_5010
+    name: ninox-fox
+    branch: build
+    port: 5010
