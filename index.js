@@ -62,10 +62,6 @@ webhooks.onAny(async ({ id, name, payload }) => {
         const branchName = pyl.ref.split('/').pop()
         const repositoryName = pyl.repository.full_name.split("/").pop()
 
-        // digantikan dengan function
-        // await fetch(`https:/wa.wibudev.com/code?nom=6289697338821&text=${repositoryName}, ${namaBranch}, ${id}, ${name}`)
-        // await fetch(`https:/wa.wibudev.com/code?nom=628980185458&text=${repositoryName}, ${namaBranch}, ${id}, ${name}`)
-
         let log_data = `
         repository: ${repositoryName}
         branch: ${branchName}

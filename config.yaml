@@ -40,6 +40,7 @@ list_server:
     name: explore-tropica
     branch: build
     port: 3000
+    
   - id: ninox-fox_5010
     name: ninox-fox
     branch: build
