@@ -15,6 +15,11 @@ list_wa:
     number: 6282340374412
     list_server:
       - hipmi
+  - name: lukman
+    number: 6287701790942
+    list_server:
+      - arm
+      - ninox-fox
 list_server:
   - id: str_5001
     name: str
