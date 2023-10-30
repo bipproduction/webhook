@@ -18,7 +18,7 @@
   branch: build
   port: 5007
 
-- id: explore_3000
-  name: explore-tropica
+- id: raven-stone2_5013
+  name: raven-stone2
   branch: build
-  port: 3000
+  port: 5013
