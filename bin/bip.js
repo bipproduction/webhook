@@ -24,7 +24,7 @@ let list_menu = [
             git add -A 
             git commit -m "auto push" 
             git push origin ${branch}
-            ssh makuro@wibudev.com "cd projects/${project_config.path} && yarn bip --pull"
+            ssh makuro@wibudev.com "source ~/.nvm/nvm.sh && cd projects/${project_config.path} && yarn bip --pull"
             `, { stdio: "inherit" })
             console.log("SUCCESS".green)
         }
@@ -37,7 +37,6 @@ let list_menu = [
         is_server: true,
         act: () => {
             execSync(`
-            source ~/.nvm/nvm.sh
             git pull origin ${project_config.branch}
             yarn install
             pm2 restart ${project_config.id}
