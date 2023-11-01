@@ -55,3 +55,14 @@ list_server:
     name: monit
     branch: build
     port: 5011
+
+  - id: raven-stone2_5013
+    name: raven-stone2
+    branch: build
+    port: 5013
+  
+  - id: arm2_5014
+    name: arm2
+    branch: build
+    port: 5014
+
