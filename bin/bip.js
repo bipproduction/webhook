@@ -54,7 +54,7 @@ if (host === "bip") {
 function info() {
     console.log(`
     MENU
-    -----------------
+    ------------------
     \t${list_menu.map((v) => v.arg + "\t\t" + v.des).join('\t\n\t')}
 
     EXAMPLE
