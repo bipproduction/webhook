@@ -2,8 +2,8 @@ const arg = process.argv.splice(2)
 const _ = require('lodash')
 require('colors')
 const { execSync } = require('child_process')
-const host = execSync('hostname').toString()
-const branch = execSync('git branch --show-current').toString()
+const host = execSync('hostname').toString().trim()
+const branch = execSync('git branch --show-current').toString().trim()
 
 const project_config = {
     id: "webhook_5008",
