@@ -22,7 +22,7 @@ module.exports = async function (repositoryName, text) {
     const dataLog = `date: ${moment().format("DD-MM-YY HH:mm")}
             log: ${text}
             \n`
-            
+
     if (!fs.existsSync(path.join(__dirname, '../../app.log'))) {
         fs.writeFileSync(path.join(__dirname, '../../app.log'), "", 'utf-8')
     }

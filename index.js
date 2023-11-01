@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
     if (!fs.existsSync('app.log')) {
         fs.writeFileSync('app.log', '', 'utf-8')
     }
-    const dataLog = fs.readFileSync('./app.log').toString()
+    const dataLog = fs.readFileSync('./app.log').toString().split('\n').reverse().join('\n')
     res.status(200).send(`<pre>
         <code>
             ${decodeURIComponent(dataLog)}
