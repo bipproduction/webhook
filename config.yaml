@@ -11,6 +11,8 @@ list_wa:
       - arm
       - hipmi
       - ninox-fox
+      - raven-stone2
+      - arm2
   - name: bagas
     number: 6282340374412
     list_server:
@@ -20,6 +22,8 @@ list_wa:
     list_server:
       - arm
       - ninox-fox
+      - raven-stone2
+      - arm2
 list_server:
   - id: str_5001
     name: str
@@ -60,9 +64,8 @@ list_server:
     name: raven-stone2
     branch: build
     port: 5013
-  
+
   - id: arm2_5014
     name: arm2
     branch: build
     port: 5014
-
