@@ -69,6 +69,7 @@ async function main() {
     const cmd = list_menu.find((v) => v.arg === arg[0])
     if (!cmd) return info()
     cmd.act()
+
 }
 
 main()
